@@ -5,8 +5,7 @@ PROJECT_VERSION = 1.0
 DEPS = ssl_verify_fun
 dep_ssl_verify_fun = git https://github.com/deadtrickster/ssl_verify_fun.erl
 
-BUILD_DEPS = lager sync hut
-dep_lager = git https://github.com/basho/lager master
+BUILD_DEPS = sync hut
 dep_sync  = git git://github.com/rustyio/sync.git
 dep_hut   = git https://github.com/turtleDeng/hut
 
