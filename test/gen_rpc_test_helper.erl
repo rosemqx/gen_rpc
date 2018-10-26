@@ -47,8 +47,6 @@ start_distribution(Node)->
 start_master(Driver) ->
     ok = set_application_environment(?MASTER),
     ok = set_driver_configuration(Driver, ?MASTER),
-    %% Start lager
-    {ok, _LApps} = application:ensure_all_started(lager),
     %% Start the application remotely
     {ok, _Apps} = application:ensure_all_started(?APP),
     ok.
@@ -62,8 +60,6 @@ start_slave(Driver) ->
     ok = rpc:call(?SLAVE, code, add_pathsz, [code:get_path()]),
     ok = set_application_environment(?SLAVE),
     ok = set_driver_configuration(Driver, ?SLAVE),
-    %% Start lager
-    {ok, _SlaveLApps} = rpc:call(?SLAVE, application, ensure_all_started, [lager]),
     %% Start the application remotely
     {ok, _SlaveApps} = rpc:call(?SLAVE, application, ensure_all_started, [?APP]),
     ok.
@@ -133,7 +129,6 @@ restart_application() ->
     _ = application:stop(?APP),
     _ = application:unload(?APP),
     ok = timer:sleep(100),
-    {ok, _LApps} = application:ensure_all_started(lager),
     {ok, _Apps} = application:ensure_all_started(?APP),
     ok.
 
