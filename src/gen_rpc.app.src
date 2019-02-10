@@ -5,7 +5,7 @@
 %%%
 
 {application, gen_rpc,
-    [{description, "A scalable RPC library for Erlang-VM based languages"},
+    [{description, "RPC library for BEAM languages"},
     {vsn, git},
     {mod, {gen_rpc_app, []}},
     {registered, [gen_rpc_dispatcher]},
